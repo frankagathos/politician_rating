@@ -113,7 +113,7 @@ class Cards extends React.Component {
                         
                         
                     <div className="statistics">
-                          <div>{this.state.joker}</div>
+                        <div>{this.state.joker}</div>
                         <div>{this.state.joke}</div>
                         <button onClick={this.GetIp}>Get ip</button>
                   
