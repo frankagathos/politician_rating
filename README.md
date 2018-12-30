@@ -1,10 +1,12 @@
 
-# create a new folder
+## installing
 
-# git clone https://github.com/frankagathos/politician_rating.git
+ create a new folder
 
-# cd politician_rating
+ git clone https://github.com/frankagathos/politician_rating.git
 
-# npm install
+ cd politician_rating
 
-# npm start
+ npm install
+
+ npm start
