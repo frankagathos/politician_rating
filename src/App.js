@@ -95,7 +95,7 @@ class Cards extends React.Component {
                         <div>{this.state.joke}</div>
                   
                   
-                        <div>Your IP iS : {loc_stats.ip}</div>
+                        <div>Your IP is : {loc_stats.ip}</div>
                         <div>You live in : {loc_stats.region}</div>
                      </div>
                 
