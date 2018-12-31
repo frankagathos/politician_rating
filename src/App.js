@@ -29,7 +29,7 @@ class Cards extends React.Component {
             )
         })
     }
-
+        //card vote up function
       cardVoteUp = (x) => {                           
          const increasedList = this.state.list.map((z)=>{
              if (z.id===x){
