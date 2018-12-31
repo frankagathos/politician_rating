@@ -85,18 +85,18 @@ class Cards extends React.Component {
          ));
         return(
             <div className='App'>
-                       <div>Politicians Ranking</div>
+                      
+                       <div>Rate politicians jokes</div>
                        <div>{cards}</div>
-                     
-                        
-                       
+                               
                     <div className="statistics">
-                        <div>{this.state.joker}</div>
-                        <div>{this.state.joke}</div>
-                  
-                  
                         <div>Your IP is : {loc_stats.ip}</div>
                         <div>You live in : {loc_stats.region}</div>
+                           
+                     </div>
+                     <div className="joke-card">
+                           <div>{this.state.joker}</div>
+                           <div>{this.state.joke}</div>    
                      </div>
                 
             </div>
@@ -125,13 +125,12 @@ class Card extends React.Component {
         return (
             <div className="card">
               <div className="card-inner">
-              <div>{this.props.name+"  "+this.props.surname}</div>
-               <img className="imagestyle" src={this.props.image} alt="Joker"></img>
-              <div>{this.props.points}</div>      
-              
-              <button onClick={this.onVoteup}>+1 point</button>
-              <button onClick={this.onVotedown}>-1 point</button>
-              <button  onClick={this.onGetJoke}>get joke</button>
+                      <div>{this.props.name+"  "+this.props.surname}</div>
+                      <img className="imagestyle" src={this.props.image} alt="Joker"></img>
+                      <div className="points">POINTS : {this.props.points}</div>      
+                      <button className="upvote btn" onClick={this.onVoteup}>+1 point</button>
+                      <button className="downvote btn" onClick={this.onVotedown}>-1 point</button>
+                      <button className="getjoke btn" onClick={this.onGetJoke}>get joke</button>
                
                 </div>
             </div>
