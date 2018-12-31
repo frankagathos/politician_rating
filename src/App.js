@@ -56,7 +56,6 @@ class Cards extends React.Component {
        {list:reducedist});    
    }
     
-    
           GetRandomJoke = async (x) => {
   
                 const api_call = await fetch(`https://api.chucknorris.io/jokes/random`);
