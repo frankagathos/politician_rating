@@ -6,39 +6,45 @@ import './App.css'
   
  
 
-class Cards extends React.Component {
-    
+class Cards extends React.Component {  
         state = {
             list:[],joke:"",
             joker:"",
-            userip:""
+            userip:"",
+            isLoaded:false,
+            loc_stats:{ip:'loading'},
                 
         };
-        
-          
+               
     componentDidMount(){
-        this.setState({list:list});
+        this.setState({list:list}); 
+        //API request inside componentDidMount
+        fetch(`https://ipinfo.io/json`)
+         .then(res => res.json())
+         .then(json => {
+            this.setState({
+                isLoaded:true,
+                loc_stats:json,
+            }     
+            )
+        })
     }
- 
-   cardVoteUp = (x) => {                           
-     const increasedList = this.state.list.map((z)=>{
-         if (z.id===x){
-             return Object.assign({},z,{points:z.points+1,});
-         }
-         
-         else {
-             return z;
-         }
-     });
-       
-   
-       
-       
-       this.setState({
-          list:increasedList, 
-       });
-   }
-   
+
+      cardVoteUp = (x) => {                           
+         const increasedList = this.state.list.map((z)=>{
+             if (z.id===x){
+                 return Object.assign({},z,{points:z.points+1,});
+             }
+
+             else {
+                 return z;
+             }
+         });
+
+           this.setState({
+              list:increasedList, 
+           });
+       }
    cardVoteDown = (x) => {  
        const reducedist = this.state.list.map((y)=>{
            if (y.id===x){
@@ -47,62 +53,37 @@ class Cards extends React.Component {
            else{
                return y;
            }
-       });
-       
+       });    
        this.setState(
        {list:reducedist});    
    }
- 
-   
-       
-    GetIp = async (x) => {
-  
-    const api_call = await fetch(`https://ipinfo.io/json`);
-    const data = await api_call.json();
-    const ip = data.ip;
-
-
-       
-     this.setState({
-            
-         userip:ip,
-       });
-        
-     
-      }
+    
     
           GetRandomJoke = async (x) => {
   
-    const api_call = await fetch(`https://api.chucknorris.io/jokes/random`);
-    const data = await api_call.json();
-    const joke = data;
-
-
-       
-     this.setState({
-            
-          joke:joke.value,joker:x+' says:',
-       });
+                const api_call = await fetch(`https://api.chucknorris.io/jokes/random`);
+                const data = await api_call.json();
+                const joke = data;
+                     this.setState({
+                          joke:joke.value,
+                          joker:x+' says:',
+                       });
       }
       
     render(){
-        
-        const sortedlist = this.state.list.sort((a,b)=>(b.points-a.points)); //sort(); mutates the original array it was called on
-        
-        
-         const cards = sortedlist.map((x)=>(
+        const loc_stats = this.state.loc_stats;
+        const sortedlist = this.state.list.sort((a,b)=>(b.points-a.points)); //sort(); mutates the original array it was called on   
+        const cards = sortedlist.map((x)=>(
              <Card
                  name = {x.name}
                  surname={x.surname}       
                  points = {x.points}
                  key = {x.id}
                  image={x.image}   
-                id={x.id}             
+                 id={x.id}             
                  onVoteup= {this.cardVoteUp}
                  onVotedown={this.cardVoteDown}
                  onGetJoke={this.GetRandomJoke}                  
-                
-             
                  ></Card>
          ));
         return(
@@ -111,13 +92,14 @@ class Cards extends React.Component {
                        <div>{cards}</div>
                      
                         
-                        
+                       
                     <div className="statistics">
                         <div>{this.state.joker}</div>
                         <div>{this.state.joke}</div>
-                        <button onClick={this.GetIp}>Get ip</button>
                   
-                        <div>Your IP IS:{this.state.userip}</div>
+                  
+                        <div>Your IP iS : {loc_stats.ip}</div>
+                        <div>You live in : {loc_stats.region}</div>
                      </div>
                 
             </div>
