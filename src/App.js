@@ -35,12 +35,10 @@ class Cards extends React.Component {
              if (z.id===x){
                  return Object.assign({},z,{points:z.points+1,});
              }
-
              else {
                  return z;
              }
          });
-
            this.setState({
               list:increasedList, 
            });
