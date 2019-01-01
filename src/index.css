@@ -67,3 +67,7 @@ body {
     top:0px;
     z-index: 1;
 }
+
+.country-results img{
+    width: 125px;
+}

@@ -122,9 +122,12 @@ class Cards extends React.Component {
                         <div>Your IP is : {loc_stats.ip}</div>
                         <div>You live in : {loc_stats.region}</div>
                         <button onClick={this.findCountryStats}>MY COUNTRY</button>
-                          
-                           <div>{this.state.specific_country}</div>
+                          <div className="country-results">
+                                    <div>{this.state.specific_country}</div>
                             <img src={this.state.specific_country_flag} alt=""></img>
+                              
+                          </div>
+                     
                            
                      </div>
                      <div className="joke-card">
