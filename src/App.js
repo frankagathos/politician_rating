@@ -3,9 +3,6 @@ import list from './list.js';
 import './App.css'
 
 
-  
- 
-
 class Cards extends React.Component {  
         state = {
             list:[],joke:"",
@@ -77,12 +74,10 @@ class Cards extends React.Component {
                        });
       }
           
-    //Get specific country
-          
+    //Get specific countrys stats FUNCTION 
        findCountryStats = (z) =>{
-               const MYCOUNTRY=this.state.loc_stats.country;
+        const MYCOUNTRY=this.state.loc_stats.country;
            
-           console.log(MYCOUNTRY);
         //API request  of users country
         fetch(`https://restcountries.eu/rest/v2/alpha/${MYCOUNTRY}`)
          .then(res => res.json())
