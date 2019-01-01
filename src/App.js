@@ -13,21 +13,30 @@ class Cards extends React.Component {
             userip:"",
             isLoaded:false,
             loc_stats:{ip:'loading'},
+       
+         
                 
         };
                
     componentDidMount(){
         this.setState({list:list}); 
+        
         //API request inside componentDidMount
         fetch(`https://ipinfo.io/json`)
          .then(res => res.json())
          .then(json => {
+           
             this.setState({
                 isLoaded:true,
                 loc_stats:json,
+               
+              
             }     
             )
         })
+     
+
+
     }
         //card vote up function
       cardVoteUp = (x) => {                           
@@ -56,6 +65,7 @@ class Cards extends React.Component {
        {list:reducedist});    
    }
     
+   //Get random joke function API
           GetRandomJoke = async (x) => {
   
                 const api_call = await fetch(`https://api.chucknorris.io/jokes/random`);
@@ -66,6 +76,25 @@ class Cards extends React.Component {
                           joker:x+' says:',
                        });
       }
+          
+    //Get specific country
+          
+       findCountryStats = (z) =>{
+               const MYCOUNTRY=this.state.loc_stats.country;
+           
+           console.log(MYCOUNTRY);
+        //API request  of users country
+        fetch(`https://restcountries.eu/rest/v2/alpha/${MYCOUNTRY}`)
+         .then(res => res.json())
+         .then(json => {
+            this.setState({          
+              
+                specific_country:json.name,
+                specific_country_flag:json.flag,
+            }     
+            )
+        })
+     }
       
     render(){
         const loc_stats = this.state.loc_stats;
@@ -92,11 +121,16 @@ class Cards extends React.Component {
                     <div className="statistics">
                         <div>Your IP is : {loc_stats.ip}</div>
                         <div>You live in : {loc_stats.region}</div>
+                        <button onClick={this.findCountryStats}>MY COUNTRY</button>
+                          
+                           <div>{this.state.specific_country}</div>
+                            <img src={this.state.specific_country_flag} alt=""></img>
                            
                      </div>
                      <div className="joke-card">
                            <div>{this.state.joker}</div>
-                           <div>{this.state.joke}</div>    
+                           <div>{this.state.joke}</div>  
+                         
                      </div>
                 
             </div>
