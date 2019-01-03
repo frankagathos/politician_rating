@@ -88,3 +88,7 @@ body {
 .country-results img {
     width: 125px;
 }
+
+
+.show{display:block;}
+.hide{display:none;}
