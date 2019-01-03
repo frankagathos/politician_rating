@@ -140,7 +140,6 @@ class Cards extends React.Component {
     
 }
 
-
 class Card extends React.Component {
  
     onVoteup = () => (

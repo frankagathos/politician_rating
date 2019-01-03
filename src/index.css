@@ -1,12 +1,12 @@
 body {
-    background: red;
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont,  "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background:grey;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     font-size: calc(7px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
 
@@ -14,32 +14,33 @@ body {
 
 
 .imagestyle {
-    width:200px;
+    width: 200px;
     max-width: 100%;
 }
 
-.card{
+.card {
 
     margin: 10px 0;
-  
+
 }
 
-.card-inner{
+.card-inner {
     padding: 15px;
-    color:aliceblue;
+    color: aliceblue;
     display: inline-block;
     background-color: darkred;
-      border-radius: 10px;
+    border-radius: 10px;
 }
 
-.statistics{
-    color:aliceblue;
+.statistics {
+    color: aliceblue;
     padding: 25px;
     max-width: 25%;
-    background-color:rgba(139,19,19,0.8);;
-    position:fixed;
+    background-color: rgba(139, 19, 19, 0.8);
+    ;
+    position: fixed;
     left: 0px;
-    top:0px;
+    top: 0px;
     z-index: 1;
 }
 
@@ -47,27 +48,43 @@ body {
     margin: 5px;
 }
 
-.upvote{
-    background-color:darkgreen;
-    color:aliceblue;
+.upvote {
+    background-color: darkgreen;
+    color: aliceblue;
 }
-.downvote{background-color:red;color:aliceblue;}
-.getjoke{background-color: aquamarine;color:black;}
-.btn{padding: 5px 25px;margin: 0 5px;cursor: pointer;}
 
-.points{margin: 10px auto;font-size: 1.5em;}
+.downvote {
+    background-color: red;
+    color: aliceblue;
+}
 
-.joke-card{
-    color:aliceblue;
+.getjoke {
+    background-color: aquamarine;
+    color: black;
+}
+
+.btn {
+    padding: 5px 25px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.points {
+    margin: 10px auto;
+    font-size: 1.5em;
+}
+
+.joke-card {
+    color: aliceblue;
     padding: 25px;
     max-width: 25%;
-    background-color:rgba(139,19,19,0.8);
-    position:fixed;
+    background-color: rgba(139, 19, 19, 0.8);
+    position: fixed;
     right: 0px;
-    top:0px;
+    top: 0px;
     z-index: 1;
 }
 
-.country-results img{
+.country-results img {
     width: 125px;
 }
