@@ -11,10 +11,7 @@ class Cards extends React.Component {
             isLoaded:false,
             loc_stats:{ip:'loading'},
             spaceResults:"hide",
-            numberInSpace:"",
-       
-         
-                
+            numberInSpace:"",            
         };
                
     componentDidMount(){
@@ -28,15 +25,11 @@ class Cards extends React.Component {
             this.setState({
                 isLoaded:true,
                 loc_stats:json,
-               
-              
+   
             }     
             )
         })
         
-
-     
-
 
     }
         //card vote up function
