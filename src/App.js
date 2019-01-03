@@ -10,6 +10,8 @@ class Cards extends React.Component {
             userip:"",
             isLoaded:false,
             loc_stats:{ip:'loading'},
+            spaceResults:"hide",
+            numberInSpace:"",
        
          
                 
@@ -18,7 +20,7 @@ class Cards extends React.Component {
     componentDidMount(){
         this.setState({list:list}); 
         
-        //API request inside componentDidMount
+        //API request inside componentDidMount //IP API
         fetch(`https://ipinfo.io/json`)
          .then(res => res.json())
          .then(json => {
@@ -31,6 +33,8 @@ class Cards extends React.Component {
             }     
             )
         })
+        
+
      
 
 
@@ -91,6 +95,22 @@ class Cards extends React.Component {
         })
      }
       
+       findPeopleInSpace = (z) =>{
+        //API request number of people in space
+        fetch(`http://api.open-notify.org/astros.json`)
+         .then(res => res.json())
+         .then(json => {
+           
+            this.setState({
+                numberInSpace:json.number,
+                spaceResults:"show",
+                      
+              
+            }     
+            )
+        })
+       }
+       
     render(){
         const loc_stats = this.state.loc_stats;
         const sortedlist = this.state.list.sort((a,b)=>(b.points-a.points)); //sort(); mutates the original array it was called on   
@@ -116,10 +136,17 @@ class Cards extends React.Component {
                     <div className="statistics">
                         <div>Your IP is : {loc_stats.ip}</div>
                         <div>You live in : {loc_stats.region}</div>
-                        <button onClick={this.findCountryStats}>MY COUNTRY</button>
+                        <button onClick={this.findCountryStats}>MY FLAG</button>
+                         <button onClick={this.findPeopleInSpace}>PEOPLE IN SPACE</button>
                           <div className="country-results">
                                     <div>{this.state.specific_country}</div>
                             <img src={this.state.specific_country_flag} alt=""></img>
+                              
+                          </div>
+                          
+                            <div className={this.state.spaceResults}>
+                                    <div>Currently there are: {this.state.numberInSpace} people in space</div>
+                        
                               
                           </div>
                      
