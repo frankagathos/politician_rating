@@ -17,7 +17,7 @@ class Cards extends React.Component {
     componentDidMount(){
         this.setState({list:list}); 
         
-        //API request inside componentDidMount //IP API
+        //API request inside componentDidMount //IP API (1)
         fetch(`https://ipinfo.io/json`)
          .then(res => res.json())
          .then(json => {
@@ -59,7 +59,7 @@ class Cards extends React.Component {
        {list:reducedist});    
    }
     
-   //Get random joke function API
+   //Get random joke function API (2)
           GetRandomJoke = async (x) => {
   
                 const api_call = await fetch(`https://api.chucknorris.io/jokes/random`);
@@ -71,7 +71,7 @@ class Cards extends React.Component {
                        });
       }
           
-    //Get specific countrys stats FUNCTION 
+    //Get specific countrys stats FUNCTION API (3)
        findCountryStats = (z) =>{
         const MYCOUNTRY=this.state.loc_stats.country;
            
@@ -87,9 +87,8 @@ class Cards extends React.Component {
             )
         })
      }
-      
        findPeopleInSpace = (z) =>{
-        //API request number of people in space
+        //API request number of people in space API (4)
         fetch(`http://api.open-notify.org/astros.json`)
          .then(res => res.json())
          .then(json => {
