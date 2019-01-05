@@ -12,8 +12,10 @@ class Cards extends React.Component {
             loc_stats:{ip:'loading'},
             spaceResults:"hide",
             numberInSpace:"", 
+            photoresults:"hide",
             user_city:"",
              city_photo_url:"",
+            
         };
                
     componentDidMount(){
@@ -118,7 +120,7 @@ class Cards extends React.Component {
             this.setState({          
               
                city_photo_url:json.results[randomnumber].urls.regular,
-             
+                photoresults:"show photoresults"
             }     
             )
         })
@@ -163,8 +165,8 @@ class Cards extends React.Component {
                                     <div>Currently there are: {this.state.numberInSpace} people in space</div>
                         
                               
-                          </div>
-                               <div>
+                          </div >
+                               <div className={this.state.photoresults}>
                                     <div>Photo of your country:<img src={this.state.city_photo_url} alt="imagesfd"/></div>
                         
                               
