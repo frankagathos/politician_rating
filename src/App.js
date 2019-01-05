@@ -14,7 +14,8 @@ class Cards extends React.Component {
             numberInSpace:"", 
             photoresults:"hide",
             user_city:"",
-             city_photo_url:"",
+            city_photo_url:"",
+ 
             
         };
                
@@ -109,17 +110,21 @@ class Cards extends React.Component {
        }
           //Get photos near me API (5)
        findPhotosNear = (z) =>{
-        const query= this.state.loc_stats.country;
-        const client_id ="8ed09088a4eb4d257e69127e636984bbf65599f0f00bc9a10a35d759d3f2b7d2"  ;
-        const randomnumber = Math.floor(Math.random() * 5) + 1;  
+        const query= this.state.loc_stats.city;
+        const client_id ="8ed09088a4eb4d257e69127e636984bbf65599f0f00bc9a10a35d759d3f2b7d2";
+      
           
         //API request  of users country
         fetch(`https://api.unsplash.com/search/photos?client_id=${client_id}&query=${query}`)
          .then(res => res.json())
          .then(json => {
+            
+            
+            
             this.setState({          
               
-               city_photo_url:json.results[randomnumber].urls.regular,
+               city_photo_url:json.results[0].urls.regular,
+             
                 photoresults:"show photoresults"
             }     
             )
@@ -152,7 +157,7 @@ class Cards extends React.Component {
                         <div>Your IP is : {loc_stats.ip}</div>
                         <div>You live in : {loc_stats.region}</div>
                         <div>Near : {loc_stats.city}</div>
-                        <button onClick={this.findCountryStats}>MY FLAG</button>
+                        <button onClick={this.findCountryStats}>MY FLAG </button>
                          <button onClick={this.findPeopleInSpace}>PEOPLE IN SPACE</button>
                          <button onClick={this.findPhotosNear}>PHOTO NEAR ME</button>
                           <div className="country-results">
@@ -167,7 +172,7 @@ class Cards extends React.Component {
                               
                           </div >
                                <div className={this.state.photoresults}>
-                                    <div>Photo of your country:<img src={this.state.city_photo_url} alt="imagesfd"/></div>
+                                    <div>Photo  related to {this.state.loc_stats.city} :<img src={this.state.city_photo_url} alt="imagesfd"/></div>
                         
                               
                           </div>
