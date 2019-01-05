@@ -11,7 +11,9 @@ class Cards extends React.Component {
             isLoaded:false,
             loc_stats:{ip:'loading'},
             spaceResults:"hide",
-            numberInSpace:"",            
+            numberInSpace:"", 
+            user_city:"",
+             city_photo_url:"",
         };
                
     componentDidMount(){
@@ -25,7 +27,8 @@ class Cards extends React.Component {
             this.setState({
                 isLoaded:true,
                 loc_stats:json,
-   
+                user_city:json.city,
+                
             }     
             )
         })
@@ -102,6 +105,24 @@ class Cards extends React.Component {
             )
         })
        }
+          //Get photos near me API (5)
+       findPhotosNear = (z) =>{
+        const query= this.state.loc_stats.country;
+        const client_id ="8ed09088a4eb4d257e69127e636984bbf65599f0f00bc9a10a35d759d3f2b7d2"  ;
+        const randomnumber = Math.floor(Math.random() * 5) + 1;  
+          
+        //API request  of users country
+        fetch(`https://api.unsplash.com/search/photos?client_id=${client_id}&query=${query}`)
+         .then(res => res.json())
+         .then(json => {
+            this.setState({          
+              
+               city_photo_url:json.results[randomnumber].urls.regular,
+             
+            }     
+            )
+        })
+     }
        
     render(){
         const loc_stats = this.state.loc_stats;
@@ -128,8 +149,10 @@ class Cards extends React.Component {
                     <div className="statistics">
                         <div>Your IP is : {loc_stats.ip}</div>
                         <div>You live in : {loc_stats.region}</div>
+                        <div>Near : {loc_stats.city}</div>
                         <button onClick={this.findCountryStats}>MY FLAG</button>
                          <button onClick={this.findPeopleInSpace}>PEOPLE IN SPACE</button>
+                         <button onClick={this.findPhotosNear}>PHOTO NEAR ME</button>
                           <div className="country-results">
                                     <div>{this.state.specific_country}</div>
                             <img src={this.state.specific_country_flag} alt=""></img>
@@ -138,6 +161,11 @@ class Cards extends React.Component {
                           
                             <div className={this.state.spaceResults}>
                                     <div>Currently there are: {this.state.numberInSpace} people in space</div>
+                        
+                              
+                          </div>
+                               <div>
+                                    <div>Photo of your country:<img src={this.state.city_photo_url} alt="imagesfd"/></div>
                         
                               
                           </div>
