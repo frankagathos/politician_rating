@@ -15,7 +15,7 @@ class Cards extends React.Component {
             photoresults:"hide",
             user_city:"",
             city_photo_url:"",
- 
+            photocounter:0,
             
         };
                
@@ -38,7 +38,7 @@ class Cards extends React.Component {
         
 
     }
-        //card vote up function
+    //card vote up function
       cardVoteUp = (x) => {                           
          const increasedList = this.state.list.map((z)=>{
              if (z.id===x){
@@ -111,20 +111,19 @@ class Cards extends React.Component {
           //Get photos near me API (5)
        findPhotosNear = (z) =>{
         const query= this.state.loc_stats.city;
-        const client_id ="8ed09088a4eb4d257e69127e636984bbf65599f0f00bc9a10a35d759d3f2b7d2";
-      
+        const client_id ="8ed09088a4eb4d257e69127e636984bbf65599f0f00bc9a10a35d759d3f2b7d2"  ;
+        let photocounter = this.state.photocounter ; 
           
         //API request  of users country
         fetch(`https://api.unsplash.com/search/photos?client_id=${client_id}&query=${query}`)
          .then(res => res.json())
          .then(json => {
             
-            
-            
+
             this.setState({          
               
-               city_photo_url:json.results[0].urls.regular,
-             
+               city_photo_url:json.results[photocounter].urls.regular,
+                photocounter:this.state.photocounter+1,
                 photoresults:"show photoresults"
             }     
             )
