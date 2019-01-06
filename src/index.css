@@ -89,8 +89,10 @@ body {
     width: 125px;
 }
 
+
 .photoresults img{
-    max-width: 350px
+    width: 100%;
+    max-width: 350px;
 }
 .show{display:block;}
 .hide{display:none;}

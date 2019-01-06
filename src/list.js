@@ -11,4 +11,4 @@ const list = [
 
 
 
-export default list
+export default list;
